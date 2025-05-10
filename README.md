@@ -38,6 +38,10 @@ you run your compose command. The required templates for these files are include
 If you want to modify other files like those in the `config` folder, consider adding the
 `/data/config` folder as a volume similar to how the files above are set up.
 
+## JVM Arguments (memory usage)
+
+If you are building the image yourself, you can customize the JVM arguments used by the server in [`entrypoint.sh`](entrypoint.sh).
+
 #  Manual Setup
 The server can be set up without using a program like `podman-compose` or `docker-compose`.
 
@@ -56,6 +60,15 @@ podman run -d -e EULA=TRUE \
   ghcr.io/claraphyll/create-astral:v2.1.3
 ```
 to get started. This will run a Create: Astral server on port 25565 (the default) which stores the game world in a named volume.
+
+## Building your own image
+
+If you use compose, you can have the best of both worlds with very little modification. Replace the `image: ghcr.io/claraphyll/create-astral:v2.1.3` line in the [`compose.yaml`](compose.yaml) file with the following:
+```yaml
+build: .
+```
+
+Now, when you run the command `podman-compose build` or `docker compose build` you will be able to build the image using the provided Dockerfile. This can allow you to modify your [`entrypoint.sh`](entrypoint.sh) or perform any other customizations, such as updating to an as of yet unsupported version of Create: Astral. Once it is built, you can run the container like normal using `docker compose up -d` or `podman-compose up -d`.
 
 # Maintenance
 See the documentation for your preferred container engine for comprehensive guidance. Some hints:
