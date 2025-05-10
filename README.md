@@ -63,7 +63,7 @@ to get started. This will run a Create: Astral server on port 25565 (the default
 
 ## Building your own image
 
-If you use compose, you can have the best of both worlds with very little modification. Replace the `image: ghcr.io/claraphyll/create-astral:v2.1.3` line in the [`compose.yaml`](compose.yaml) file with the following:
+If you use compose, you can have the best of both worlds with very little modification. Replace the line `image: ghcr.io/claraphyll/create-astral:v2.1.3` in the [`compose.yaml`](compose.yaml) file with the following:
 ```yaml
 build: .
 ```
